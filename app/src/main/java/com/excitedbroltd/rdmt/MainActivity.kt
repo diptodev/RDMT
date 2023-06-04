@@ -9,11 +9,13 @@ import androidx.activity.ComponentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.excitedbroltd.rdmt.di.DatabaseApplication
 import com.excitedbroltd.rdmt.mvvm.MyViewModel
 import com.excitedbroltd.rdmt.roomdatabase.MyViewModelFactory
 import com.excitedbroltd.rdmt.roomdatabase.User
 import com.excitedbroltd.rdmt.rvadapter.RecyclerListener
 import com.excitedbroltd.rdmt.rvadapter.RecyclerViewAdapter
+import javax.inject.Inject
 
 class MainActivity : ComponentActivity(), RecyclerListener {
     private val TAG = "MainActivity"
@@ -25,11 +27,14 @@ class MainActivity : ComponentActivity(), RecyclerListener {
     private lateinit var myViewModel: MyViewModel
     private var id = 0
 
+    @Inject
+    lateinit var factory: MyViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acitiviy_main)
+        (application as DatabaseApplication).databaseComponent.inject(this)
+
         dialog = AlertDialog.Builder(this)
-        val factory = MyViewModelFactory(this)
         myViewModel = ViewModelProvider(this, factory)[MyViewModel::class.java]
         val rv = findViewById<RecyclerView>(R.id.rv_view)
         val linearLayout = LinearLayoutManager(this)

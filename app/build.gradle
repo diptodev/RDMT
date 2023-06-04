@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android' version '2.44' apply false
 }
 
 android {
@@ -45,6 +46,10 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    // Allow references to generated code
+    kapt {
+        correctErrorTypes true
+    }
 }
 
 dependencies {
@@ -72,7 +77,9 @@ dependencies {
 
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"
-//room coroutine
+    //room coroutine
     implementation "androidx.room:room-ktx:$room_version"
-
+    // dagger hilt dependency
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-compiler:2.44"
 }

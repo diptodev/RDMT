@@ -6,17 +6,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.excitedbroltd.rdmt.roomdatabase.User
-import com.excitedbroltd.rdmt.roomdatabase.UserDataBase
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MyViewModel(private val context: Context) : ViewModel() {
+class MyViewModel @Inject constructor(private val context: Context, var repository: Repository) :
+    ViewModel() {
     private val TAG = "MyViewModel"
-    val instance: UserDataBase = UserDataBase.getInstance(context)
-    val repository = Repository(instance.getUserDao())
     fun addUser(user: User) {
         viewModelScope.launch {
-
-
             repository.addUser(user)
             Toast.makeText(context, "User added", Toast.LENGTH_SHORT).show()
         }

@@ -1,19 +1,20 @@
 package com.excitedbroltd.rdmt.mvvm
 
-import com.excitedbroltd.rdmt.roomdatabase.Dao
 import com.excitedbroltd.rdmt.roomdatabase.User
+import com.excitedbroltd.rdmt.roomdatabase.UserDataBase
+import javax.inject.Inject
 
-class Repository(private val userDao: Dao) {
+class Repository @Inject constructor(val userDataBase: UserDataBase) {
     suspend fun addUser(user: User) {
-        userDao.addUser(user)
+        userDataBase.getUserDao().addUser(user)
     }
 
-    fun getAllUser() = userDao.getAllUser()
+    fun getAllUser() = userDataBase.getUserDao().getAllUser()
     suspend fun updateUser(user: User) {
-        userDao.updateUser(user)
+        userDataBase.getUserDao().updateUser(user)
     }
 
     suspend fun deleteUser(user: User) {
-        userDao.deleteUser(user)
+        userDataBase.getUserDao().deleteUser(user)
     }
 }

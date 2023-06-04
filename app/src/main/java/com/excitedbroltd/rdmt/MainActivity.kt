@@ -9,7 +9,7 @@ import androidx.activity.ComponentActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.excitedbroltd.rdmt.di.DatabaseApplication
+import com.excitedbroltd.rdmt.di.application.DatabaseApplication
 import com.excitedbroltd.rdmt.mvvm.MyViewModel
 import com.excitedbroltd.rdmt.roomdatabase.MyViewModelFactory
 import com.excitedbroltd.rdmt.roomdatabase.User
@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity(), RecyclerListener {
     private lateinit var name: EditText
     private lateinit var age: EditText
     private lateinit var addUserBtn: Button
-    private var mlist = emptyList<User>()
     private lateinit var dialog: AlertDialog.Builder
     private lateinit var myViewModel: MyViewModel
     private var id = 0
@@ -33,7 +32,6 @@ class MainActivity : ComponentActivity(), RecyclerListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.acitiviy_main)
         (application as DatabaseApplication).databaseComponent.inject(this)
-
         dialog = AlertDialog.Builder(this)
         myViewModel = ViewModelProvider(this, factory)[MyViewModel::class.java]
         val rv = findViewById<RecyclerView>(R.id.rv_view)

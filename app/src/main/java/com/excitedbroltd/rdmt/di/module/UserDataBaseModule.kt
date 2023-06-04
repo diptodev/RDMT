@@ -1,4 +1,4 @@
-package com.excitedbroltd.rdmt.di
+package com.excitedbroltd.rdmt.di.module
 
 import android.content.Context
 import androidx.room.Room

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="#DDB7B7"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:id="@+id/ll_listItem"
+    >
+
+    <TextView
+        android:id="@+id/rv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/rv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dipto Debnath"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/rv_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="25"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+</LinearLayout>

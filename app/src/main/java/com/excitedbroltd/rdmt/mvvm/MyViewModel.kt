@@ -13,18 +13,29 @@ class MyViewModel(private val context: Context) : ViewModel() {
     private val TAG = "MyViewModel"
     val instance: UserDataBase = UserDataBase.getInstance(context)
     val repository = Repository(instance.getUserDao())
-    fun addUser(id: Int, name: String, age: String) {
+    fun addUser(user: User) {
         viewModelScope.launch {
-            if (name.isNotEmpty() && age.isNotEmpty()) {
-                val user = User(0, name, Integer.parseInt(age))
-                repository.addUser(user)
-                Toast.makeText(context, "User added", Toast.LENGTH_SHORT).show()
-            }
 
+
+            repository.addUser(user)
+            Toast.makeText(context, "User added", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     fun getUserdata(): LiveData<List<User>> {
         return repository.getAllUser()
+    }
+
+    fun deletePerson(user: User) {
+        viewModelScope.launch {
+            repository.deleteUser(user)
+        }
+    }
+
+    fun updatePerson(user: User) {
+        viewModelScope.launch {
+            repository.updateUser(user)
+        }
     }
 }

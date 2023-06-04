@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.excitedbroltd.rdmt.R
 import com.excitedbroltd.rdmt.roomdatabase.User
 
-class RecyclerViewAdapter() :
+class RecyclerViewAdapter(private val listener: RecyclerListener) :
     RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
     private var listItem = emptyList<User>()
 
@@ -25,6 +25,9 @@ class RecyclerViewAdapter() :
         holder.id.text = (1 + position).toString()
         holder.name.text = user.name
         holder.age.text = user.age.toString()
+        holder.linearLayout.setOnClickListener {
+            listener.onClick(user)
+        }
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
